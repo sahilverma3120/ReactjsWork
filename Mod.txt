@@ -1,0 +1,17 @@
+The addFollowing controller method in 
+the user controller will update the
+following array for the current user by 
+pushing the followed user's reference into
+the array, as shown in the following code.
+mern-social/server/controllers/
+user.controller.js:
+const addFollowing = async (req, res, 
+next) => {  try{
+    await User.findByIdAndUpdate(req.
+body.userId,
+                   {$push: {following:
+ req.body.followId}})    next()  }
+catch(err){    return res.status(400)
+.json({
+      error: errorHandler.
+getErrorMessage(err)    })  }
